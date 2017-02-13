@@ -5,6 +5,14 @@ export class EventService {
     getEvents(): any {
         return EVENTS;
     }
+
+    getEvent(id: number): any {
+        var result = EVENTS.filter(event => event.id === id);
+        if (result.length >= 1)
+            return result[0];
+
+        return null;
+    }
 }
 
 const EVENTS = [
