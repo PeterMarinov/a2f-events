@@ -34,9 +34,20 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
     providers: [
         EventService,
         ToastrService,
-        EventRouteActivator
+        EventRouteActivator,
+        {
+            provide: 'canDeactivateCreateEvent',
+            useValue: checkDirtyState
+        }
     ]
 })
 export class AppModule {
 
+}
+
+function checkDirtyState(component: EventCreateComponent) {
+    if (component.isDirty)
+        return window.confirm("Are ypu sure you want to exit without saving changes?");
+
+    return false;
 }
