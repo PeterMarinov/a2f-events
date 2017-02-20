@@ -14,6 +14,7 @@ import { Error404Component } from './errors/404.component';
 
 import { ToastrService } from './common/toastr.service';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import { AuthService } from './user/auth.service';
 
 
 @NgModule({
@@ -30,10 +31,13 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
         EventCreateComponent,
         Error404Component
     ],
-    bootstrap: [EventsAppComponent],
+    bootstrap: [
+        EventsAppComponent
+    ],
     providers: [
         EventService,
         ToastrService,
+        AuthService,
         EventRouteActivator,
         {
             provide: 'canDeactivateCreateEvent',
@@ -47,7 +51,7 @@ export class AppModule {
 
 function checkDirtyState(component: EventCreateComponent) {
     if (component.isDirty)
-        return window.confirm("Are ypu sure you want to exit without saving changes?");
+        return window.confirm("Are you sure you want to exit without saving changes?");
 
     return false;
 }
