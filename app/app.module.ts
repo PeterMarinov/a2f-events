@@ -9,7 +9,7 @@ import { EventsListComponent } from './events/events-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { EventService } from './events/shared/event.service';
-import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { EventDetailsComponent, CreateSessionComponent } from './events/event-details/index';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 
@@ -31,6 +31,7 @@ import { AuthService } from './user/auth.service';
         EventThumbnailComponent,
         NavBarComponent,
         EventDetailsComponent,
+        CreateSessionComponent,
         CreateEventComponent,
         Error404Component
     ],
