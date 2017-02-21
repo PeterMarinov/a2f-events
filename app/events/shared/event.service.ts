@@ -9,8 +9,8 @@ import { IEvent } from './event.model';
 export class EventService {
     getEvents(): Observable<IEvent[]> {
         let subject = new Subject<IEvent[]>();
-        setTimeout(()=> {subject.next(EVENTS); subject.complete();}, 100);
-        
+        setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 100);
+
         return subject;
     }
 
@@ -20,6 +20,13 @@ export class EventService {
             return result[0];
 
         return null;
+    }
+
+    saveEvent(event: IEvent): void {
+        event.id = 3009;
+        event.sessions = [];
+
+        EVENTS.push(event);
     }
 }
 
