@@ -9,11 +9,12 @@ import { EventsListComponent } from './events/events-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { EventService } from './events/shared/event.service';
-import { EventDetailsComponent, CreateSessionComponent } from './events/event-details/index';
+import { EventDetailsComponent, CreateSessionComponent, SessionListComponent } from './events/event-details/index';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 
 import { ToastrService } from './common/toastr.service';
+import { CollapsibleWellCompomnent } from './common/collapsible-well.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { AuthService } from './user/auth.service';
 
@@ -31,9 +32,11 @@ import { AuthService } from './user/auth.service';
         EventThumbnailComponent,
         NavBarComponent,
         EventDetailsComponent,
+        SessionListComponent,
         CreateSessionComponent,
         CreateEventComponent,
-        Error404Component
+        Error404Component,
+        CollapsibleWellCompomnent
     ],
     bootstrap: [
         EventsAppComponent
