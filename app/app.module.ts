@@ -6,13 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { APP_ROUTES } from './routes';
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list.component';
+import { LocationValidator } from './events/location-validator.directive';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { EventService, DurationPipe } from './events/shared/index';
 import {
     EventDetailsComponent,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    VoterService,
+    UpvoteComponent
 } from './events/event-details/index';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
@@ -43,9 +46,11 @@ declare let jQuery: Object;
         EventThumbnailComponent,
         NavBarComponent,
         EventDetailsComponent,
+        UpvoteComponent,
         SessionListComponent,
         CreateSessionComponent,
         CreateEventComponent,
+        LocationValidator,
         Error404Component,
         DurationPipe,
         CollapsibleWellCompomnent,
@@ -66,6 +71,7 @@ declare let jQuery: Object;
             useValue: jQuery
         },
         AuthService,
+        VoterService,
         EventRouteActivator,
         {
             provide: 'canDeactivateCreateEvent',
