@@ -40,9 +40,11 @@ export class ProfileComponent implements OnInit {
 
   submitForm(formValues: any): void {
     if (this.profileForm.valid) {
-      this.authService.editCurrentUser(formValues.firstName, formValues.lastName);
-      this.router.navigate(["events"]);
-      this.toastr.success("Profile Saved");
+      this.authService.editCurrentUser(formValues.firstName, formValues.lastName)
+        .subscribe(response => {
+          this.toastr.success("Profile Saved");
+          this.router.navigate(["events"]);
+        });
     }
   }
 
@@ -56,5 +58,12 @@ export class ProfileComponent implements OnInit {
 
   validateLastNameControl(): boolean {
     return this.lastNameControl.untouched || this.lastNameControl.valid;
+  }
+
+  logout() {
+    this.authService.logoutUser()
+      .subscribe(() => {
+        this.router.navigate(['/user/login']);
+      })
   }
 }

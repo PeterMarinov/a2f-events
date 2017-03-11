@@ -2,22 +2,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 
 import { APP_ROUTES } from './routes';
 import { EventsAppComponent } from './events-app.component';
-import { EventsListComponent } from './events/events-list.component';
-import { LocationValidator } from './events/location-validator.directive';
-import { EventThumbnailComponent } from './events/event-thumbnail.component';
+import {
+    EventsListComponent,
+    CreateEventComponent,
+    CreateEventDeactivateGuard,
+    EventListResolver,
+    EventThumbnailComponent,
+    LocationValidator
+} from './events/index';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { EventService, DurationPipe } from './events/shared/index';
 import {
     EventDetailsComponent,
+    EventResolver,
     CreateSessionComponent,
     SessionListComponent,
     VoterService,
     UpvoteComponent
 } from './events/event-details/index';
-import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 
 import {
@@ -38,7 +45,8 @@ declare let jQuery: Object;
         BrowserModule,
         RouterModule.forRoot(APP_ROUTES),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpModule
     ],
     declarations: [
         EventsAppComponent,
@@ -72,20 +80,12 @@ declare let jQuery: Object;
         },
         AuthService,
         VoterService,
+        EventResolver,
+        EventListResolver,
         EventRouteActivator,
-        {
-            provide: 'canDeactivateCreateEvent',
-            useValue: checkDirtyState
-        }
+        CreateEventDeactivateGuard
     ]
 })
 export class AppModule {
 
-}
-
-function checkDirtyState(component: CreateEventComponent) {
-    if (component.isDirty)
-        return window.confirm("Are you sure you want to exit without saving changes?");
-
-    return false;
 }
